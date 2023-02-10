@@ -1,0 +1,60 @@
+{
+  "name": "e-ledger",
+  "productName": "电子账簿",
+  "author": "Wang",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "电子账簿",
+  "scripts": {
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "electronVersion": "23.0.0",
+    "win": {
+      "requestedExecutionLevel": "highestAvailable",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "./static/img/icon.png"
+    },
+    "appId": "e-ledger",
+    "artifactName": "e-ledger-${version}-${arch}.${ext}",
+    "nsis": {
+      "oneClick": false,
+      "artifactName": "e-ledger-${version}-${arch}.${ext}",
+      "allowToChangeInstallationDirectory": true
+    },
+    "extraResources": [
+      {
+        "from": "./static/",
+        "to": "./static/"
+      },
+      {
+        "from": "./main",
+        "to": "./main"
+      },
+      {
+        "from": "./page",
+        "to": "./page"
+      }
+    ],
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://xxxxx/download/"
+      }
+    ]
+  },
+  "dependencies": {
+    "core-js": "^2.6.12",
+    "electron-packager": "^17.1.1",
+    "electron-updater": "^5.3.0"
+  }
+}
